@@ -1,0 +1,14 @@
+.operation_container {
+    -fx-background-color: #09288A;
+    /* -fx-alignment: top-center; // nicht gültig für AnchorPane */
+}
+
+.operation_container Text {
+    -fx-font-size: 1.5em;
+    -fx-text-alignment: center; /* gültig */
+    -fx-fill: #FFFFFF;
+}
+
+.operation_container Button {
+    /* Optional: andere Styles, aber -fx-alignment wirkt hier nicht */
+}
