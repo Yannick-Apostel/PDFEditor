@@ -20,9 +20,9 @@
             <FontAwesomeIconView fill="WHITE" glyphName="COMPRESS" styleClass="operations_container" />
          </graphic>
       </Button>
-      <Button mnemonicParsing="false" text="Split">
+      <Button mnemonicParsing="false" onAction="#SplitAll" text="Split">
          <graphic>
-            <FontAwesomeIconView fill="WHITE" glyphName="MAGIC" />
+            <FontAwesomeIconView fill="WHITE" glyphName="SCISSORS" />
          </graphic>
       </Button>
    </VBox>

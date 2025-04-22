@@ -1,19 +1,24 @@
 package com.pdfeditor.pdfeditor.Controllers;
 
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import org.apache.pdfbox.Loader;
 import org.apache.pdfbox.cos.COSStream;
 import org.apache.pdfbox.io.IOUtils;
 import org.apache.pdfbox.io.MemoryUsageSetting;
 import org.apache.pdfbox.io.RandomAccessStreamCache;
 import org.apache.pdfbox.multipdf.PDFMergerUtility;
+import org.apache.pdfbox.multipdf.Splitter;
 import org.apache.pdfbox.pdfwriter.compress.CompressParameters;
+import org.apache.pdfbox.pdmodel.PDDocument;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -105,6 +110,25 @@ public class Main_Controller {
     public static RandomAccessStreamCache.StreamCacheCreateFunction createTempFileOnlyStreamCache() {
         return MemoryUsageSetting.setupTempFileOnly().streamCache;
     }
+    public void SplitAll() throws IOException {
+        if (uploadedFiles.size() !=1){
+
+        }else {
+
+            PDDocument document = Loader.loadPDF(uploadedFiles.get(0));
+            Splitter splitter = new Splitter();
+            List<PDDocument>splittedPdf= splitter.split(document);
+            Window stage = null;
+            for(PDDocument tosaveFile: splittedPdf){
+                FileChooser fileChooser = new FileChooser();
+                fileChooser.setTitle("PDF-Datei speichern");
+                fileChooser.setInitialFileName("zusammengefuegt.pdf");
+                File saveFile = fileChooser.showSaveDialog(stage);
+                tosaveFile.save(saveFile+".pdf");
+            }
+        }
+    }
+
     public void showPDF(){}
 
     public void SavePDF(){}

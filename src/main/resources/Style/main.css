@@ -16,7 +16,17 @@
   -fx-fill: #000000;
 }
 
-.operations_container Button{
+.operations_container Button {
+  -fx-background-color: #132A13;
+    -fx-text-fill: #FFFFFF;
+    -fx-pref-width: 180;
+    -fx-pref-height: 30;
+    -fx-alignment: center;
+    -fx-font-size: 1.2em;
+    -fx-background-radius: 12;
+    -fx-font-weight: bold; 
+}
+.operations_container ChoiceBox{
   -fx-background-color: #132A13;
     -fx-text-fill: #FFFFFF;
     -fx-pref-width: 180;
