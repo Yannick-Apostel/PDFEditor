@@ -1,6 +1,7 @@
 package com.pdfeditor.pdfeditor.Controllers;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 import javafx.stage.DirectoryChooser;
@@ -18,25 +19,45 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Main_Controller {
     @FXML
     public Label lblError;
+    @FXML
+    public Button btnUpload;
 
-    public void mergePDF() {
-        lblError.setText("");
+    List<File> uploadedFiles= new ArrayList<>();
+
+    public void uploadFile(){
+
+        Window stage = null;
         FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("PDF-Dateien auswählen");
+        fileChooser.setTitle("PDF-Datei/-en auswählen");
         fileChooser.getExtensionFilters().add(
                 new FileChooser.ExtensionFilter("PDF Dateien (*.pdf)", "*.pdf")
         );
+        List<File> selectedFiles = fileChooser.showOpenMultipleDialog(stage);
+        if(selectedFiles != null){
+            uploadedFiles.addAll(selectedFiles);
+        }
+        for(File file: uploadedFiles){
+            System.out.println(file.getName());
+        }
+    }
+
+    public void mergePDF() {
+
+        lblError.setText("");
+        FileChooser fileChooser = new FileChooser();
+
 
         // Benutzer wählt mehrere Dateien aus
         Window stage = null;
-        List<File> selectedFiles = fileChooser.showOpenMultipleDialog(stage);
 
-        if (selectedFiles == null || selectedFiles.size() <= 1) {
+
+        if (uploadedFiles == null || uploadedFiles.size() <= 1) {
             System.out.println("Bitte wähle mindestens zwei PDF-Dateien aus.");
             lblError.setTextFill(Color.RED);
             lblError.setText("Bitte wähle mindestens zwei PDF-Dateien aus.");
@@ -62,7 +83,7 @@ public class Main_Controller {
             String destinationPath = "C:\\ProgrammeSelbst\\JavaFX\\PDFEditor\\src\\main\\prevview\\merged_output.pdf";
             merger.setDestinationFileName(destinationPath);
 
-            for (File file : selectedFiles) {
+            for (File file : uploadedFiles) {
                 merger.addSource(file);
             }
             IOUtils StreamCacheCreateFunction = null;
