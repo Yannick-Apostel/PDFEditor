@@ -4,10 +4,15 @@
 }
 
 .operations_container{
-  -fx-spacing: 15;
+  -fx-background-color: #EEEEEE;
+  -fx-spacing: 20;
+  -fx-padding: 0 5;
+  -fx-alignment: center;
 }
 .operations_container Text{
   -fx-font-size: 1.2em;
+  -fx-alignment: top;
+  -fx-font-weight: bold;
   -fx-fill: #000000;
 }
 
