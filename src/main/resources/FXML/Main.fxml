@@ -33,7 +33,7 @@
             <TextField fx:id="tlblEnd" prefHeight="25.0" prefWidth="53.0" text="END" />
          </children>
       </HBox>
-      <Button mnemonicParsing="false" onAction="#SplitAll" text="Split specific ">
+      <Button mnemonicParsing="false" onAction="#SplitSpecific" text="Split specific ">
          <graphic>
             <FontAwesomeIconView fill="WHITE" glyphName="SCISSORS" />
          </graphic>

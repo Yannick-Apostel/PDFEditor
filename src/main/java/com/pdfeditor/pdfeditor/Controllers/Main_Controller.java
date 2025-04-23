@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
@@ -32,6 +33,9 @@ public class Main_Controller {
     public Label lblError;
     @FXML
     public Button btnUpload;
+    @FXML public TextField tlblStart;
+    @FXML public TextField tlblEnd;
+
 
     List<File> uploadedFiles= new ArrayList<>();
 
@@ -128,7 +132,45 @@ public class Main_Controller {
                 num++;
                 tosaveFile.save(saveFile+String.valueOf(num)+".pdf");
             }
+            document.close();
         }
+    }
+
+    public void SplitSpecific() throws IOException {
+        if (uploadedFiles.size() !=1){
+
+        }else {
+            PDDocument originalDoc = Loader.loadPDF(uploadedFiles.get(0));
+
+
+            int startPage = Integer.parseInt(tlblStart.getText());
+            int endPage = Integer.parseInt(tlblEnd.getText());
+
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("PDF-Datei speichern");
+            fileChooser.setInitialFileName("auswahl.pdf");
+            File saveFile = fileChooser.showSaveDialog(null);
+
+            if (saveFile != null) {
+
+                if (!saveFile.getName().toLowerCase().endsWith(".pdf")) {
+                    saveFile = new File(saveFile.getAbsolutePath() + ".pdf");
+                }
+
+                PDDocument newDoc = new PDDocument();
+
+
+                for (int i = startPage - 1; i < endPage; i++) {
+                    newDoc.addPage(originalDoc.getPage(i));
+                }
+
+                newDoc.save(saveFile);
+                newDoc.close();
+                originalDoc.close();
+                System.out.println("PDF erfolgreich gespeichert!");
+            }
+        }
+
     }
 
     public void showPDF(){}
