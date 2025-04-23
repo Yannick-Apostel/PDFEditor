@@ -44,3 +44,21 @@
 .operations_container FontAwesomeIconView{
   -fx-font-size: 1.1em;
 }
+
+.page_container {
+  -fx-alignment: center;
+  -fx-spacing: 20;
+ 
+}
+.page_container TextField{
+  -fx-border-color: grey;
+  -fx-border-width: 0 0 1 0; 
+  -fx-font-weight: bold; 
+  -fx-background-color: transparent;
+}
+
+.page_container TextField:focused {
+  -fx-background-color: #132A13;
+  -fx-font-weight: bold; 
+  -fx-text-fill: #ffffff;
+}
