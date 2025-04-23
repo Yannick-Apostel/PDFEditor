@@ -119,12 +119,14 @@ public class Main_Controller {
             Splitter splitter = new Splitter();
             List<PDDocument>splittedPdf= splitter.split(document);
             Window stage = null;
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("PDF-Datei speichern");
+            fileChooser.setInitialFileName("splitted.pdf");
+            File saveFile = fileChooser.showSaveDialog(stage);
+            int num =0;
             for(PDDocument tosaveFile: splittedPdf){
-                FileChooser fileChooser = new FileChooser();
-                fileChooser.setTitle("PDF-Datei speichern");
-                fileChooser.setInitialFileName("zusammengefuegt.pdf");
-                File saveFile = fileChooser.showSaveDialog(stage);
-                tosaveFile.save(saveFile+".pdf");
+                num++;
+                tosaveFile.save(saveFile+String.valueOf(num)+".pdf");
             }
         }
     }
