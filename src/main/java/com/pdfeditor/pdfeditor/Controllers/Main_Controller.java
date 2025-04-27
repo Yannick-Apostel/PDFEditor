@@ -140,7 +140,7 @@ public void mergePDF() {
 
             PDFMergerUtility merger = new PDFMergerUtility();
             String destinationPath = "C:\\ProgrammeSelbst\\JavaFX\\PDFEditor\\src\\main\\prevview\\merged_output.pdf";
-            merger.setDestinationFileName(destinationPath);
+            merger.setDestinationFileName(saveFile.getPath());
 
             for (FileItem file : uploadedFiles) {
                 merger.addSource(file.getFile());
