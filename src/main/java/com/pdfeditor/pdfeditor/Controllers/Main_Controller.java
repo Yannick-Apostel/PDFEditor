@@ -1,11 +1,15 @@
 package com.pdfeditor.pdfeditor.Controllers;
 
+import com.pdfeditor.pdfeditor.Models.FileItem;
+import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.paint.Color;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
@@ -33,30 +37,54 @@ public class Main_Controller {
     public Label lblError;
     @FXML
     public Button btnUpload;
-    @FXML public TextField tlblStart;
-    @FXML public TextField tlblEnd;
+    @FXML
+    public TextField tlblStart;
+    @FXML
+    public TextField tlblEnd;
+    @FXML
+    public TableView<FileItem> fileview;
+    @FXML
+    public TableColumn<FileItem, Integer> colRank;
+    @FXML
+    public TableColumn<FileItem, String> colFilename;
 
+    public final ObservableList<FileItem> uploadedFiles = FXCollections.observableArrayList();
 
-    List<File> uploadedFiles= new ArrayList<>();
+    @FXML
+    public void initialize() {
+        fileview.setItems(uploadedFiles);
 
-    public void uploadFile(){
-
-        Window stage = null;
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("PDF-Datei/-en auswählen");
-        fileChooser.getExtensionFilters().add(
-                new FileChooser.ExtensionFilter("PDF Dateien (*.pdf)", "*.pdf")
+        colRank.setCellValueFactory(cellData ->
+                new ReadOnlyObjectWrapper<>(fileview.getItems().indexOf(cellData.getValue()) + 1)
         );
-        List<File> selectedFiles = fileChooser.showOpenMultipleDialog(stage);
-        if(selectedFiles != null){
-            uploadedFiles.addAll(selectedFiles);
-        }
-        for(File file: uploadedFiles){
-            System.out.println(file.getName());
-        }
+
+        colFilename.setCellValueFactory(cellData ->
+                new ReadOnlyStringWrapper(cellData.getValue().getFileName())
+        );
     }
 
-    public void mergePDF() {
+
+
+
+
+
+
+@FXML
+public void uploadFile() {
+    FileChooser fileChooser = new FileChooser();
+    fileChooser.setTitle("PDF-Datei/-en auswählen");
+    fileChooser.getExtensionFilters().add(
+            new FileChooser.ExtensionFilter("PDF Dateien (*.pdf)", "*.pdf")
+    );
+    List<File> selectedFiles = fileChooser.showOpenMultipleDialog(null);
+    if (selectedFiles != null) {
+        for (File file : selectedFiles) {
+            uploadedFiles.add(new FileItem(file));
+        }
+    }
+}
+
+public void mergePDF() {
 
         lblError.setText("");
         FileChooser fileChooser = new FileChooser();
@@ -92,8 +120,8 @@ public class Main_Controller {
             String destinationPath = "C:\\ProgrammeSelbst\\JavaFX\\PDFEditor\\src\\main\\prevview\\merged_output.pdf";
             merger.setDestinationFileName(destinationPath);
 
-            for (File file : uploadedFiles) {
-                merger.addSource(file);
+            for (FileItem file : uploadedFiles) {
+                merger.addSource(file.getFile());
             }
             IOUtils StreamCacheCreateFunction = null;
             merger.mergeDocuments(StreamCacheCreateFunction.createMemoryOnlyStreamCache(), CompressParameters.NO_COMPRESSION);
@@ -119,7 +147,7 @@ public class Main_Controller {
 
         }else {
 
-            PDDocument document = Loader.loadPDF(uploadedFiles.get(0));
+            PDDocument document = Loader.loadPDF(uploadedFiles.get(0).getFile());
             Splitter splitter = new Splitter();
             List<PDDocument>splittedPdf= splitter.split(document);
             Window stage = null;
@@ -137,10 +165,10 @@ public class Main_Controller {
     }
 
     public void SplitSpecific() throws IOException {
-        if (uploadedFiles.size() !=1){
+        if (uploadedFiles.size() != 1) {
 
-        }else {
-            PDDocument originalDoc = Loader.loadPDF(uploadedFiles.get(0));
+        } else {
+            PDDocument originalDoc = Loader.loadPDF(uploadedFiles.get(0).getFile());
 
 
             int startPage = Integer.parseInt(tlblStart.getText());
@@ -171,12 +199,9 @@ public class Main_Controller {
             }
         }
 
-    }
 
-    public void showPDF(){}
 
-    public void SavePDF(){}
-}
+}}
 
 
 

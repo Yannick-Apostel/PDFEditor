@@ -9,5 +9,6 @@ module com.pdfeditor.pdfeditor {
     opens com.pdfeditor.pdfeditor to javafx.fxml;
     exports com.pdfeditor.pdfeditor;
     exports com.pdfeditor.pdfeditor.Controllers;
+    exports com.pdfeditor.pdfeditor.Models;
 
 }

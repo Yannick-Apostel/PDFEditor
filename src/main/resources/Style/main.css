@@ -62,3 +62,40 @@
   -fx-font-weight: bold; 
   -fx-text-fill: #ffffff;
 }
+
+.table_container{
+  -fx-spacing: 20;
+ 
+}
+
+.table_container Text{
+ 
+   
+}
+.table-view{
+  -fx-border-radius: 10px;
+  -fx-border-width: 7px;
+ 
+ -fx-background-color: transparent;
+}
+
+.table-view .column-header-background {
+  -fx-background-color: #132A13;
+  -fx-padding: 0;
+  -fx-background-insets: 0;
+  -fx-border-insets: 0;
+}
+
+.column-header {
+  -fx-background-color: #132A13;
+  -fx-border-color: #132A13 transparent transparent transparent;
+  -fx-padding: 0;
+  -fx-background-insets: 0;
+  
+}
+.column-header .label{
+  -fx-text-fill:#ffffff;
+}
+.table-view .filler {
+  -fx-background-color: #132A13;
+}
