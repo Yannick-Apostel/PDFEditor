@@ -38,6 +38,10 @@ public class Main_Controller {
     @FXML
     public Button btnUpload;
     @FXML
+    public Button btnUp;
+    @FXML
+    public Button btnDown;
+    @FXML
     public TextField tlblStart;
     @FXML
     public TextField tlblEnd;
@@ -65,7 +69,25 @@ public class Main_Controller {
 
 
 
+    @FXML
+    public void moveUp() {
+        int selectedIndex = fileview.getSelectionModel().getSelectedIndex();
+        if (selectedIndex > 0) {
+            FileItem item = uploadedFiles.remove(selectedIndex);
+            uploadedFiles.add(selectedIndex - 1, item);
+            fileview.getSelectionModel().clearAndSelect(selectedIndex - 1);
+        }
+    }
 
+    @FXML
+    public void moveDown() {
+        int selectedIndex = fileview.getSelectionModel().getSelectedIndex();
+        if (selectedIndex < uploadedFiles.size() - 1 && selectedIndex >= 0) {
+            FileItem item = uploadedFiles.remove(selectedIndex);
+            uploadedFiles.add(selectedIndex + 1, item);
+            fileview.getSelectionModel().clearAndSelect(selectedIndex + 1);
+        }
+    }
 
 
 

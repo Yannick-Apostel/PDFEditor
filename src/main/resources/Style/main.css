@@ -99,3 +99,18 @@
 .table-view .filler {
   -fx-background-color: #132A13;
 }
+.under-table{
+  -fx-spacing: 20;
+  -fx-alignment: center;
+}
+.under-table Button{
+  -fx-background-color: #132A13;
+  -fx-text-fill: #FFFFFF;
+  -fx-pref-width: 120;
+  -fx-pref-height: 30;
+  -fx-alignment: center;
+  -fx-font-size: 1.2em;
+  -fx-background-radius: 12;
+  -fx-font-weight: bold; 
+  
+}

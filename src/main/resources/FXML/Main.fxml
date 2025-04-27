@@ -45,10 +45,24 @@
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Current Files:" />
       <TableView fx:id="fileview" prefHeight="242.0" prefWidth="601.0">
         <columns>
-          <TableColumn fx:id="colRank" prefWidth="97.0" text="Rang" />
-          <TableColumn fx:id="colFilename" prefWidth="503.0" text="Dateiname" />
+          <TableColumn fx:id="colRank" prefWidth="97.0" text="Rank" />
+          <TableColumn fx:id="colFilename" prefWidth="503.0" text="Filename" />
         </columns>
       </TableView>
+      <HBox prefHeight="100.0" prefWidth="200.0" styleClass="under-table">
+         <children>
+            <Button fx:id="btnUp" mnemonicParsing="false" onAction="#moveUp" text="Up">
+               <graphic>
+                  <FontAwesomeIconView glyphName="arrow-left" />
+               </graphic>
+            </Button>
+            <Button fx:id="btnDown" mnemonicParsing="false" onAction="#moveDown" text="Down">
+               <graphic>
+                  <FontAwesomeIconView />
+               </graphic>
+            </Button>
+         </children>
+      </HBox>
    </VBox>
    <Label fx:id="lblError" layoutY="462.0" prefHeight="17.0" prefWidth="475.0" />
 </AnchorPane>
