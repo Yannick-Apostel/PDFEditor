@@ -69,7 +69,8 @@
 }
 
 .table_container Text{
- 
+ -fx-font-weight: bold;
+ -fx-font-size: 1.2em;
    
 }
 .table-view{

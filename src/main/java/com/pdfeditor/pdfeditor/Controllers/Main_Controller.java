@@ -220,10 +220,16 @@ public void mergePDF() {
                 System.out.println("PDF erfolgreich gespeichert!");
             }
         }
+    }
 
-
-
-}}
+    public void DeleteSelectedFileItem(){
+        int selectedIndex = fileview.getSelectionModel().getSelectedIndex();
+        if (selectedIndex < uploadedFiles.size()  && selectedIndex >= 0) {
+            FileItem item = uploadedFiles.remove(selectedIndex);
+            fileview.refresh();
+        }
+    }
+}
 
 
 

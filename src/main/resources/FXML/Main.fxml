@@ -12,11 +12,16 @@
 <?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="484.0" prefWidth="814.0" styleClass="container" stylesheets="@../Style/main.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pdfeditor.pdfeditor.Controllers.Main_Controller">
-   <VBox prefHeight="301.0" prefWidth="203.0" styleClass="operations_container" AnchorPane.bottomAnchor="183.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+   <VBox prefHeight="361.0" prefWidth="203.0" styleClass="operations_container" AnchorPane.bottomAnchor="123.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Select a function: " />
       <Button fx:id="btnUpload" mnemonicParsing="false" onAction="#uploadFile" text="Upload">
          <graphic>
             <FontAwesomeIconView fill="WHITE" glyphName="UPLOAD" />
+         </graphic>
+      </Button>
+      <Button fx:id="btnDelete" mnemonicParsing="false" onAction="#DeleteSelectedFileItem" text="Delete">
+         <graphic>
+            <FontAwesomeIconView fill="WHITE" glyphName="TRASH" />
          </graphic>
       </Button>
       <Button mnemonicParsing="false" onAction="#mergePDF" prefHeight="32.0" prefWidth="150.0" text="Merge">
@@ -35,7 +40,7 @@
             <TextField fx:id="tlblEnd" prefHeight="25.0" prefWidth="53.0" text="END" />
          </children>
       </HBox>
-      <Button mnemonicParsing="false" onAction="#SplitSpecific" text="Split specific ">
+      <Button mnemonicParsing="false" onAction="#SplitSpecific" prefHeight="53.0" text="Split specific ">
          <graphic>
             <FontAwesomeIconView fill="WHITE" glyphName="SCISSORS" />
          </graphic>
@@ -46,19 +51,19 @@
       <TableView fx:id="fileview" prefHeight="242.0" prefWidth="601.0">
         <columns>
           <TableColumn fx:id="colRank" prefWidth="97.0" text="Rank" />
-          <TableColumn fx:id="colFilename" prefWidth="503.0" text="Filename" />
+          <TableColumn fx:id="colFilename" prefWidth="513.0" text="Filename" />
         </columns>
       </TableView>
       <HBox prefHeight="100.0" prefWidth="200.0" styleClass="under-table">
          <children>
             <Button fx:id="btnUp" mnemonicParsing="false" onAction="#moveUp" text="Up">
                <graphic>
-                  <FontAwesomeIconView glyphName="arrow-left" />
+                  <FontAwesomeIconView fill="WHITE" glyphName="ARROW_UP" />
                </graphic>
             </Button>
             <Button fx:id="btnDown" mnemonicParsing="false" onAction="#moveDown" text="Down">
                <graphic>
-                  <FontAwesomeIconView />
+                  <FontAwesomeIconView fill="WHITE" glyphName="ARROW_DOWN" />
                </graphic>
             </Button>
          </children>
